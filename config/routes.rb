@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get 'landing' => 'welcomepage#show'
   post 'login' => 'welcomepage#login'
 
-  resources :users
 
   root 'welcomepage#show'
   # The priority is based upon order of creation: first created -> highest priority.
