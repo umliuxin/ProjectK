@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  get 'game_list' => 'game_list#show'
   get 'landing' => 'welcomepage#show'
+  post 'login' => 'welcomepage#login'
 
   resources :users
 

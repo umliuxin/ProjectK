@@ -1,2 +1,11 @@
-<h1>Welcomepage#show</h1>
-<p>Find me in app/views/welcomepage/show.html.erb</p>
+<h1>Welcome to ProjectK</h1>
+<p>First, what do you want me to call you?</p>
+
+<div class="">
+  <%# http://guides.rubyonrails.org/form_helpers.html %>
+  <%= form_tag("login", method: "post") do %>
+    <%= label_tag(:username, "Username:") %>
+    <%= text_field_tag(:username) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+</div>
