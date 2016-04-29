@@ -1,17 +1,30 @@
 class WelcomepageController < ApplicationController
   def show
+    # get current_user
+
+    if logged_in?
+      redirect_to action: 'show', controller: 'game_list'
+    end
   end
+
   def login
     # Get Username from user input
     puts params[:username]
     @user = User.new(name:params[:username])
     if @user.save
-      redirect_to action:'show',controller:'game_list',username:params[:username]
+      flash[:success] = 'Login Successful!'
+      log_in @user
+      redirect_to action:'show',controller:'game_list'
     else
-      redirect_to :action=>'show'
+      flash.now[:danger] = "Login Failed!"
+      render "show"
     end
-    # Store it in session?
-    # Session class should be in helper
-    #redirect_to game_list
+  end
+
+  def logout
+
+    log_out if logged_in?
+    redirect_to root_url
+
   end
 end

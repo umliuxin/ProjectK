@@ -1,6 +1,7 @@
 class GameListController < ApplicationController
   def show
-    puts '>>>>>>>>>>>'
-    puts params
+    ap '>>>>>>>>>>>'
+    ap current_user ? current_user : 'not login'
+    ap '>>>>>>>>>>>'
   end
 end

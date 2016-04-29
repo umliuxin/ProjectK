@@ -1,1 +1,6 @@
-<h1>I know it now. You are <%=params[:username]%></h1>
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>"><%= message %></div>
+<% end %>
+
+
+<h1>I know it now. You are <%= @current_user ? @current_user[:name] : 'Not Login'%></h1>
