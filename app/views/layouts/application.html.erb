@@ -5,9 +5,13 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
 
+  <h1>Showing if you are loggedin:</h1>
+  <h2><%= logged_in?%></h2>
+  <%= link_to "Log out", logout_path, method: "delete" %>
 <%= yield %>
 
 </body>

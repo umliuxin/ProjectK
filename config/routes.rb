@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+
+  get 'game_list' => 'game_list#show'
+  get 'landing' => 'welcomepage#show'
+  get 'login' => 'welcomepage#show'
+  delete 'logout' => 'welcomepage#logout'
+  post 'login' => 'welcomepage#login'
+
+
+
+  root to: 'welcomepage#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

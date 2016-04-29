@@ -1,0 +1,15 @@
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>"><%= message %></div>
+<% end %>
+
+<h1>Welcome to ProjectK</h1>
+<p>First, what do you want me to call you?</p>
+
+<div class="">
+  <%# http://guides.rubyonrails.org/form_helpers.html %>
+  <%= form_tag("login", method: "post") do %>
+    <%= label_tag(:username, "Username:") %>
+    <%= text_field_tag(:username) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+</div>
