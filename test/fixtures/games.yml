@@ -1,0 +1,8 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# Fixture for creating game
+testgame:
+  host_id: 36
+  num_of_player: 6
+  access_code: 'ABC'
+  is_active: 1

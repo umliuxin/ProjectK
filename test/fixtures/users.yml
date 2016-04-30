@@ -1,1 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+testuser:
+  name: testuser
+  id: 36
+  remember_digest: SCI4iM84XFCvXtf2kCqCPw
+  created_at: Sat, 30 Apr 2016 21:05:08 UTC +00:00
+  updated_at: Sat, 30 Apr 2016 21:05:08 UTC +00:00

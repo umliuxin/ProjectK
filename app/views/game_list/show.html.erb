@@ -4,3 +4,18 @@
 
 
 <h1>I know it now. You are <%= @current_user ? @current_user[:name] : 'Not Login'%></h1>
+
+
+<section>
+  <h2>Create a new game</h2>
+  <div>
+    <%= form_tag("create_game",method:"post") do%>
+      <%= label_tag(:numOfPlayer, "How many players:") %>
+      <%= text_field_tag(:numOfPlayer) %>
+      <%= label_tag(:accessCode, "Access Code (optional)") %>
+      <%= text_field_tag(:accessCode) %>
+      <%= hidden_field_tag(:host_id,@current_user[:id]) %>
+      <%= submit_tag("Create!") %>
+    <% end %>
+  </div>
+</section>

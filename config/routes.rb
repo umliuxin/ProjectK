@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
-  get 'game_list' => 'game_list#show'
-  get 'landing' => 'welcomepage#show'
+  # Login process
   get 'login' => 'welcomepage#show'
-  delete 'logout' => 'welcomepage#logout'
   post 'login' => 'welcomepage#login'
+  delete 'logout' => 'welcomepage#logout'
+  # Game list page
+  get 'game_list' => 'game_list#show'
+  post 'create_game' => 'game_list#create_game'
+
 
 
 

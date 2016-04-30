@@ -8,7 +8,7 @@ module WelcomepageHelper
   end
 
   def current_user
-    ap 'running current_user'
+    # ap 'running current_user'
     if (user_name = session[:username])
       @current_user ||= User.find_by(name: session[:username])
     elsif (user_name = cookies.signed[:username])
