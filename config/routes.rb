@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # Game list page
   get 'game_list' => 'game_list#show'
   post 'create_game' => 'game_list#create_game'
+  post 'join_game' => 'game_list#join_game'
 
   # Game room page
 
