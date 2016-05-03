@@ -4,7 +4,6 @@ module ApplicationHelper
     user.remember
     cookies.permanent.signed[:username] = user.name
     cookies.permanent[:remember_token] = user.remember_token
-    puts 'login function'
   end
 
   def current_user

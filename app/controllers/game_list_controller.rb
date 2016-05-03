@@ -1,15 +1,11 @@
 class GameListController < ApplicationController
+  include GameListHelper
+
   def show
     @current_user = current_user
-    ap '_____flash show_____'
-    ap flash
-    ap'________________________'
     if !@current_user
       redirect_to :action=>'show' , :controller=>'welcomepage'
     end
-    ap '_____game list show_____'
-    ap @current_user
-    ap'________________________'
   end
 
   def create_game
@@ -22,9 +18,6 @@ class GameListController < ApplicationController
         access_code: params[:accessCode],
         is_active: 1
       }
-      ap '____Running Creating game ___'
-      ap create_params
-      ap '______end creating game ________'
 
       @game = Game.new(host_id: create_params[:host_id],
             num_of_player: create_params[:number_of_player],
@@ -34,8 +27,12 @@ class GameListController < ApplicationController
       if @game.save
         flash[:success] = 'Game Created!'
         # Join in the game after creation
-        game_id = @game.id
-        ap @current_user
+        ap '__Joining game as a host__'
+        unless join_in(@game.id, @current_user.id)
+          flash[:danger] = 'Hosting join in failed!'
+          redirect_to action:'show'
+        end
+        remember_game(@game)
         redirect_to action:'show', controller:'game_room'
       else
         flash[:danger] = 'Game Creation Failed!'

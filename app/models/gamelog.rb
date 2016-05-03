@@ -4,4 +4,6 @@ class Gamelog < ActiveRecord::Base
   validates :is_active, inclusion:{in: [true, false],message: "%{value} is not a valid one"}
   validates :is_win, inclusion:{in: [true, false],message: "%{value} is not a valid win"}
 
+
+  
 end

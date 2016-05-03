@@ -2,5 +2,6 @@
 <p>Find me in app/views/game_room/show.html.erb</p>
 
 <div>
-  <%= params%>
+  Game ID:
+  <%= @current_game ? @current_game.id : 'no current_game'%>
 </div>
