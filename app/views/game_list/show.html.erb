@@ -1,8 +1,3 @@
-<% flash.each do |message_type, message| %>
-  <div class="alert alert-<%= message_type %>"><%= message %></div>
-<% end %>
-
-
 <h1>I know it now. You are <%= @current_user ? @current_user[:name] : 'Not Login'%></h1>
 
 
@@ -17,5 +12,17 @@
       <%= hidden_field_tag(:host_id,@current_user[:id]) %>
       <%= submit_tag("Create!") %>
     <% end %>
+  </div>
+</section>
+
+<section>
+  <h2>Join game</h2>
+  <div>
+    <%= form_tag("join_game", method:"post") do%>
+      <%= label_tag(:room_id, "Enter Room ID")%>
+      <%= text_field_tag(:room_id)%>
+      <%= submit_tag("Join!") %>
+    <% end %>
+
   </div>
 </section>

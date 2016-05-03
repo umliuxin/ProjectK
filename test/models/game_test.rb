@@ -28,14 +28,14 @@ class GameTest < ActiveSupport::TestCase
   end
 
   test "host_id should be one existing user's id" do
-    @game.host_id = 0
+    @game.host_id = -1
     assert_not @game.valid?
   end
 
-  test "game should be active when saving" do
+  test "is_active should be 0 or 1" do
     @game.is_active = 'a'
     assert_not @game.valid?
-    @game.is_active = 0
+    @game.is_active = 2
     assert_not @game.valid?
   end
 

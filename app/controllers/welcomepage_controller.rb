@@ -9,7 +9,6 @@ class WelcomepageController < ApplicationController
 
   def login
     # Get Username from user input
-    puts params[:username]
     @user = User.new(name:params[:username])
     if @user.save
       flash[:success] = 'Login Successful!'

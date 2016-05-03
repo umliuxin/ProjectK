@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+testgamelog:
+  game_id: 1
+  user_id: 1
+  is_active: false
+  is_win: false

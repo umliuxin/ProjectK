@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'game_room/show'
+
   # Login process
   get 'login' => 'welcomepage#show'
   post 'login' => 'welcomepage#login'
@@ -8,7 +10,9 @@ Rails.application.routes.draw do
   get 'game_list' => 'game_list#show'
   post 'create_game' => 'game_list#create_game'
 
+  # Game room page
 
+  get 'game_room' => 'game_room#show'
 
 
   root to: 'welcomepage#show'
