@@ -19,8 +19,8 @@
   <h2>Join game</h2>
   <div>
     <%= form_tag("join_game", method:"post") do%>
-      <%= label_tag(:room_id, "Enter Room ID")%>
-      <%= text_field_tag(:room_id)%>
+      <%= label_tag(:game_id, "Enter Room ID")%>
+      <%= text_field_tag(:game_id)%>
       <%= submit_tag("Join!") %>
     <% end %>
 

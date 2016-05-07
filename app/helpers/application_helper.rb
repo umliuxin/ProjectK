@@ -27,6 +27,39 @@ module ApplicationHelper
     session.delete(:username)
     cookies.delete(:username)
     cookies.delete(:remember_token)
-    @username=nil
+    # @username=nil
   end
+
+  def current_game
+    if game_id = session[:gameid]
+      @current_game ||= Game.find_by(id: game_id)
+    elsif game_id = cookies[:gameid]
+      remember_game(game)
+      game ||= Game.find_by(id: game_id)
+      @current_game = game
+    end
+  end
+
+  def in_game?
+    !current_game.nil?
+  end
+
+  def remember_game(game)
+    # this method is to store info in session and cookies
+    session[:gameid] = game.id
+    cookies.permanent[:gameid] = game.id
+  end
+
+  def forget_game
+    #this method is to forget game infor in session and cookies
+    session.delete(:gameid)
+    cookies.delete(:gameid)
+    # @current_user = nil
+  end
+
+  def current_gamelog
+  
+  end
+
+
 end

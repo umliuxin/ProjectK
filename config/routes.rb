@@ -9,11 +9,13 @@ Rails.application.routes.draw do
   # Game list page
   get 'game_list' => 'game_list#show'
   post 'create_game' => 'game_list#create_game'
+  post 'join_game' => 'game_list#join_game'
 
   # Game room page
 
   get 'game_room' => 'game_room#show'
 
+  get 'exit' =>'game_room#exit'
 
   root to: 'welcomepage#show'
   # The priority is based upon order of creation: first created -> highest priority.
