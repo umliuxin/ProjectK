@@ -8,21 +8,4 @@ module GameListHelper
     gamelog.save
     #return true if save sucessfully
   end
-
-  def exit_game
-  end
-
-  def remember_game(game)
-    # this method is to store info in session and cookies
-    session[:gameid] = game.id
-    cookies.permanent[:gameid] = game.id
-  end
-
-  def forget_game(game)
-    #this method is to forget game infor in session and cookies
-    session.delete(:gameid)
-    cookies.delete(:gameid)
-  end
-
-
 end

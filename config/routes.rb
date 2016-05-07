@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   get 'game_room' => 'game_room#show'
 
+  get 'exit' =>'game_room#exit'
 
   root to: 'welcomepage#show'
   # The priority is based upon order of creation: first created -> highest priority.

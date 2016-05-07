@@ -4,6 +4,10 @@ class Gamelog < ActiveRecord::Base
   validates :is_active, inclusion:{in: [true, false],message: "%{value} is not a valid one"}
   validates :is_win, inclusion:{in: [true, false],message: "%{value} is not a valid win"}
 
+  def exit_game
+    # self.is_active = f
+    update_attribute(:is_active , 'f')
+  end
 
-  
+
 end

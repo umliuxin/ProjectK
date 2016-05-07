@@ -4,7 +4,13 @@ class GameListController < ApplicationController
   def show
     @current_user = current_user
     if !@current_user
-      redirect_to :action=>'show' , :controller=>'welcomepage'
+      log_out
+      redirect_to root_path
+    end
+
+    if current_game
+      # redirect_to :action=>'show' , :controller=>'game_room'
+      redirect_to '/game_room'
     end
   end
 
@@ -40,7 +46,7 @@ class GameListController < ApplicationController
         redirect_to action:'show'
       end
       remember_game(@game)
-      redirect_to action:'show', controller:'game_room'
+      redirect_to '/game_room'
       return
     else
       flash[:danger] = 'Game Creation Failed!'
@@ -55,7 +61,7 @@ class GameListController < ApplicationController
 
     unless @current_user = current_user
       flash[:danger] = 'no current user'
-      redirect_to action:'show'
+      redirect_to root_path
       return
     end
     game_id = params[:game_id].to_i
@@ -92,7 +98,7 @@ class GameListController < ApplicationController
     end
     remember_game(@game)
     redirect_to action:'show', controller:'game_room'
-
-
   end
+
+
 end
