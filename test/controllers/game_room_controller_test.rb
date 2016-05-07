@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class GameRoomControllerTest < ActionController::TestCase
+<<<<<<< Updated upstream
 
   # def setup
   #   session[USER_SESSION_ID] = 32
@@ -14,6 +15,9 @@ class GameRoomControllerTest < ActionController::TestCase
   #
   # test "should get show" do
   #
+=======
+  # test "should get show" do
+>>>>>>> Stashed changes
   #   get :show
   #   assert_response :success
   # end
