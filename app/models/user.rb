@@ -14,10 +14,6 @@ class User < ActiveRecord::Base
   end
 
   def authtoken?(remember_token)
-    ap '_________'
-    ap self.remember_digest
-    ap remember_token
-    ap '_________'
     self.remember_digest == remember_token
   end
 end

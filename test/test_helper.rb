@@ -10,4 +10,18 @@ class ActiveSupport::TestCase
   def is_logged_in?
     !session[:user_id].nil?
   end
+
+  def log_in(user)
+    session[USER_SESSION_ID] = user.id
+    user.remember
+    cookies.permanent.signed[USER_COOKIE_ID] = user.id
+    cookies.permanent[USER_COOKIE_TOKEN] = user.remember_token
+  end
+
+  def remember_game(game)
+    # this method is to store info in session and cookies
+    session[GAME_SESSION_ID] = game.id
+    cookies.permanent[GAME_COOKIE_ID] = game.id
+  end
+
 end
