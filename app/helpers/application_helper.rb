@@ -1,18 +1,17 @@
 module ApplicationHelper
   def log_in(user)
-    session[:username] = user.name
+    session[USER_SESSION_ID] = user.id
     user.remember
-    cookies.permanent.signed[:username] = user.name
-    cookies.permanent[:remember_token] = user.remember_token
+    cookies.permanent.signed[USER_COOKIE_ID] = user.id
+    cookies.permanent[USER_COOKIE_TOKEN] = user.remember_token
   end
 
   def current_user
-    # ap 'running current_user'
-    if (user_name = session[:username])
-      @current_user ||= User.find_by(name: session[:username])
-    elsif (user_name = cookies.signed[:username])
-      user = User.find_by(name: user_name)
-      if user && user.authtoken?(cookies[:remember_token])
+    if (user_id = session[USER_SESSION_ID])
+      @current_user ||= User.find_by(id: user_id)
+    elsif (user_id = cookies.signed[USER_COOKIE_ID])
+      user = User.find_by(id: user_id)
+      if user && user.authtoken?(cookies[USER_COOKIE_TOKEN])
         log_in user
         @current_user = user
       end
@@ -24,18 +23,24 @@ module ApplicationHelper
   end
 
   def log_out
-    session.delete(:username)
-    cookies.delete(:username)
-    cookies.delete(:remember_token)
-    # @username=nil
+    session.delete(USER_SESSION_ID)
+    cookies.delete(USER_COOKIE_ID)
+    cookies.delete(USER_COOKIE_TOKEN)
   end
 
   def current_game
-    if game_id = session[:gameid]
+    ap 'run current_game'
+    if game_id = session[GAME_SESSION_ID]
+      ap game_id
       @current_game ||= Game.find_by(id: game_id)
-    elsif game_id = cookies[:gameid]
-      remember_game(game)
+      ap '_______________'
+      ap @current_game
+      ap '_______________'
+      @current_game
+    elsif game_id = cookies[GAME_COOKIE_ID]
+      ap '2'
       game ||= Game.find_by(id: game_id)
+      remember_game(game)
       @current_game = game
     end
   end
@@ -46,19 +51,18 @@ module ApplicationHelper
 
   def remember_game(game)
     # this method is to store info in session and cookies
-    session[:gameid] = game.id
-    cookies.permanent[:gameid] = game.id
+    session[GAME_SESSION_ID] = game.id
+    cookies.permanent[GAME_COOKIE_ID] = game.id
   end
 
   def forget_game
     #this method is to forget game infor in session and cookies
-    session.delete(:gameid)
-    cookies.delete(:gameid)
-    # @current_user = nil
+    session.delete(GAME_SESSION_ID)
+    cookies.delete(GAME_COOKIE_ID)
   end
 
   def current_gamelog
-  
+
   end
 
 

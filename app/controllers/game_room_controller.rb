@@ -12,6 +12,7 @@ class GameRoomController < ApplicationController
       flash[:danger] = "NO GAME DATA FOUND"
       forget_game
       redirect_to '/game_list'
+      return
     end
   end
 
@@ -22,6 +23,7 @@ class GameRoomController < ApplicationController
       @current_gamelog = Gamelog.find_by(game_id: @current_game[:id], user_id: @current_user[:id])
       @current_gamelog.exit_game
     end
+
     if in_game?
       forget_game
     end

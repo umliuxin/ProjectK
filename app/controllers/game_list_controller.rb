@@ -6,9 +6,11 @@ class GameListController < ApplicationController
     if !@current_user
       log_out
       redirect_to root_path
+      return
     end
     if current_game
       redirect_to '/game_room'
+      return
     end
   end
 
@@ -42,6 +44,7 @@ class GameListController < ApplicationController
       unless join_in_game(@game.id, @current_user.id)
         flash[:danger] = 'Hosting join in failed!'
         redirect_to action:'show'
+        return
       end
       remember_game(@game)
       redirect_to '/game_room'
@@ -90,7 +93,7 @@ class GameListController < ApplicationController
       return
     end
 
-    unless join_in_game(@game.id, @current_user.id)
+    unless join_in_game({gameid: @game.id, userid: @current_user.id})
       flash[:danger] = 'Guest join in failed!'
       redirect_to action:'show'
     end
