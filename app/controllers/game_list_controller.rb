@@ -7,9 +7,7 @@ class GameListController < ApplicationController
       log_out
       redirect_to root_path
     end
-
     if current_game
-      # redirect_to :action=>'show' , :controller=>'game_room'
       redirect_to '/game_room'
     end
   end

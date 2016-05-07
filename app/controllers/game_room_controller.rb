@@ -10,6 +10,7 @@ class GameRoomController < ApplicationController
     @current_game = current_game
     if !@current_game
       flash[:danger] = "NO GAME DATA FOUND"
+      forget_game
       redirect_to '/game_list'
     end
   end
