@@ -29,16 +29,12 @@ module ApplicationHelper
   end
 
   def current_game
-    ap 'run current_game'
     if game_id = session[GAME_SESSION_ID]
       ap game_id
       @current_game ||= Game.find_by(id: game_id)
-      ap '_______________'
-      ap @current_game
-      ap '_______________'
+
       @current_game
     elsif game_id = cookies[GAME_COOKIE_ID]
-      ap '2'
       game ||= Game.find_by(id: game_id)
       remember_game(game)
       @current_game = game

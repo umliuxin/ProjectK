@@ -29,19 +29,23 @@ class GameListController < ApplicationController
       host_id: params[:host_id].to_i,
       number_of_player: params[:numOfPlayer].to_i,
       access_code: params[:accessCode],
-      is_active: 1
+      is_active: 1,
+      gameroles: GAME_ROLE[params[:numOfPlayer].to_sym]
     }
 
     @game = Game.new(host_id: create_params[:host_id],
           num_of_player: create_params[:number_of_player],
           is_active: create_params[:is_active],
-          access_code: create_params[:access_code])
+          access_code: create_params[:access_code],
+          gameroles: create_params[:gameroles])
+
 
     if @game.save
       flash[:success] = 'Game Created!'
       # Join in the game after creation
       ap '__Joining game as a host__'
-      unless join_in_game(@game.id, @current_user.id)
+      ap Game.last.id
+      unless join_in_game({gameid: @game.id, userid: @current_user.id})
         flash[:danger] = 'Hosting join in failed!'
         redirect_to action:'show'
         return
