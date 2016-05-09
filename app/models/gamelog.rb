@@ -8,5 +8,8 @@ class Gamelog < ActiveRecord::Base
     update_attribute(:is_active , 'f')
   end
 
+  def get_game_role
+    
+  end
 
 end

@@ -38,13 +38,14 @@ class GameListController < ApplicationController
           is_active: create_params[:is_active],
           access_code: create_params[:access_code],
           gameroles: create_params[:gameroles])
+    @game.random_game_role
+
 
 
     if @game.save
       flash[:success] = 'Game Created!'
       # Join in the game after creation
       ap '__Joining game as a host__'
-      ap Game.last.id
       unless join_in_game({gameid: @game.id, userid: @current_user.id})
         flash[:danger] = 'Hosting join in failed!'
         redirect_to action:'show'
@@ -54,6 +55,7 @@ class GameListController < ApplicationController
       redirect_to '/game_room'
       return
     else
+      ap @game.errors
       flash[:danger] = 'Game Creation Failed!'
       redirect_to action:'show'
       return
@@ -77,7 +79,7 @@ class GameListController < ApplicationController
       return
     end
     # game should be active
-    unless @game.is_active === 1
+    unless @game.is_active === true
       flash[:danger] = 'Game not active'
       redirect_to action:'show'
       return

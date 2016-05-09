@@ -26,6 +26,7 @@ module ApplicationHelper
     session.delete(USER_SESSION_ID)
     cookies.delete(USER_COOKIE_ID)
     cookies.delete(USER_COOKIE_TOKEN)
+    forget_game
   end
 
   def current_game
