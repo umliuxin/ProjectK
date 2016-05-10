@@ -4,7 +4,7 @@ class GamelogTest < ActiveSupport::TestCase
 
   def setup
     pramas = gamelogs(:testgamelog)
-    @gamelog = Gamelog.new(user_id: pramas.user_id, game_id: pramas.game_id)
+    @gamelog = Gamelog.new(user_id: pramas.user_id, game_id: pramas.game_id, gamerole: pramas.gamerole,is_active: pramas.is_active, is_win: pramas.is_win)
   end
 
 

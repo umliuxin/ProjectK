@@ -5,3 +5,4 @@ testgamelog:
   user_id: 1
   is_active: false
   is_win: false
+  gamerole: 1

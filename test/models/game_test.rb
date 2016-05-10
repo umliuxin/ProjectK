@@ -27,10 +27,6 @@ class GameTest < ActiveSupport::TestCase
     assert_not @game.valid?
   end
 
-  test "host_id should be one existing user's id" do
-    @game.host_id = -1
-    assert_not @game.valid?
-  end
 
   test "gameroles should not be nil" do
     @game.gameroles = nil
