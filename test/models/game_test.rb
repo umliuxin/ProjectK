@@ -3,7 +3,7 @@ require 'test_helper'
 class GameTest < ActiveSupport::TestCase
   def setup
     game = games(:testgame)
-    @game = Game.new(num_of_player: game.num_of_player,host_id: game.host_id,access_code: game.access_code,is_active: game.is_active)
+    @game = Game.new(num_of_player: game.num_of_player,host_id: game.host_id,access_code: game.access_code,is_active: game.is_active, gameroles: game.gameroles)
   end
 
   test "should be vaild game" do
@@ -27,16 +27,31 @@ class GameTest < ActiveSupport::TestCase
     assert_not @game.valid?
   end
 
-  test "host_id should be one existing user's id" do
-    @game.host_id = -1
+
+  test "gameroles should not be nil" do
+    @game.gameroles = nil
     assert_not @game.valid?
   end
 
-  test "is_active should be 0 or 1" do
-    @game.is_active = 'a'
+  test "gameroles should be only including 0, 1, 2" do
+    @game.gameroles = '3333333'
     assert_not @game.valid?
-    @game.is_active = 2
+    @game.gameroles = 'b111111'
     assert_not @game.valid?
+  end
+
+  test "gameroles length should be inbetween 5 and 12" do
+    @game.gameroles='0'
+    assert_not @game.valid?
+  end
+
+
+
+  test "is_active should be true or false" do
+    @game.is_active = nil
+    assert_not @game.valid?
+    @game.is_active = true
+    assert @game.valid?
   end
 
   test "access code should be less than 20 char" do

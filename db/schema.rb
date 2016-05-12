@@ -11,24 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160507065544) do
+ActiveRecord::Schema.define(version: 20160510044444) do
 
   create_table "gamelogs", force: :cascade do |t|
     t.integer  "game_id"
     t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "is_active",  default: true,  null: false
-    t.boolean  "is_win",     default: false, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "is_active",  default: true, null: false
+    t.boolean  "is_win"
+    t.string   "gamerole"
   end
 
   create_table "games", force: :cascade do |t|
     t.integer  "num_of_player"
     t.integer  "host_id"
-    t.integer  "is_active"
+    t.boolean  "is_active",            default: true,  null: false
     t.string   "access_code"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "gameroles"
+    t.integer  "num_of_active_player", default: 0
+    t.boolean  "is_end",               default: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -2,8 +2,15 @@
 <p>Find me in app/views/game_room/show.html.erb</p>
 
 <div>
-  Game ID:
-  <%= @current_game ? @current_game.id : 'no current_game'%>
+  <ul>
+    <li>Game ID: <%= @current_game ? @current_game.id : 'no current_game'%></li>
+    <li>Number of Player: <%= @current_game ? @current_game.num_of_player : 'no current_game'%> </li>
+    <li>Host ID: <%= @current_game ? @current_game.num_of_player : 'no current_game'%></li>
+    <li>Game roles: <%= @current_game ? @current_game.gameroles : 'no current_game'%></li>
+    <li>Game role: <%= @current_gamelog ? @current_gamelog.gamerole : 'no current_gamelog'%></li>
+  </ul>
+
+
 </div>
 
 

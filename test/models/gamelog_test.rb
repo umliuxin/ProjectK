@@ -4,7 +4,7 @@ class GamelogTest < ActiveSupport::TestCase
 
   def setup
     pramas = gamelogs(:testgamelog)
-    @gamelog = Gamelog.new(user_id: pramas.user_id, game_id: pramas.game_id)
+    @gamelog = Gamelog.new(user_id: pramas.user_id, game_id: pramas.game_id, gamerole: pramas.gamerole,is_active: pramas.is_active, is_win: pramas.is_win)
   end
 
 
@@ -13,8 +13,7 @@ class GamelogTest < ActiveSupport::TestCase
   end
 
   test "game_id should be valid" do
-    @gamelog.game_id = Game.last.id + 1
-    assert_not @gamelog.valid?
+
     @gamelog.game_id = 'a'
     assert_not @gamelog.valid?
     @gamelog.game_id = -1
@@ -23,8 +22,7 @@ class GamelogTest < ActiveSupport::TestCase
   end
 
   test "user_id should be valid" do
-    @gamelog.user_id = User.last.id + 1
-    assert_not @gamelog.valid?
+
     @gamelog.user_id = 'a'
     assert_not @gamelog.valid?
     @gamelog.user_id = -1

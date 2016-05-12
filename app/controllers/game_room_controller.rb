@@ -14,6 +14,8 @@ class GameRoomController < ApplicationController
       redirect_to '/game_list'
       return
     end
+    @current_gamelog = Gamelog.find_by(user_id: @current_user.id, game_id: @current_game.id)
+
   end
 
   def exit
