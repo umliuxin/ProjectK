@@ -35,8 +35,10 @@ class GamelogTest < ActiveSupport::TestCase
   end
 
   test "is_win cannot be null" do
-    @gamelog.is_win = nil
-    assert_not @gamelog.valid?
+    @gamelog.is_win = false
+    assert @gamelog.valid?
+    @gamelog.is_win = true
+    assert @gamelog.valid?
   end
 
 end

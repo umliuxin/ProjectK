@@ -9,11 +9,18 @@
     <li>Game roles: <%= @current_game ? @current_game.gameroles : 'no current_game'%></li>
     <li>Game role: <%= @current_gamelog ? @current_gamelog.gamerole : 'no current_gamelog'%></li>
   </ul>
-
+  <% if is_game_host? %>
+    <div>
+      <p><%= link_to "Killers Win", '/killer_win'%></p>
+      <p><%= link_to "Killers Lose", '/killer_lose'%></p>
+      <p><%= link_to "Cancel Game", '/'%></p>
+    </div>
+  <% end %>
 
 </div>
 
-
-<div>
-  <%= link_to 'Exit Game', '/exit'%>
-</div>
+<% unless is_game_host? %>
+  <div>
+    <%= link_to 'Exit Game', '/exit'%>
+  </div>
+<% end %>

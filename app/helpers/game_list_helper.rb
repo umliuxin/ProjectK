@@ -10,8 +10,10 @@ module GameListHelper
       ap @game.gameroles
       ap gamerole_index - 1
       ap @game.gameroles[gamerole_index-1]
-      ap '______________'
       @gamelog.gamerole = @game.gameroles[gamerole_index-1]
+      ap @gamelog
+      ap @gamelog.valid?
+      ap '______________'
       @gamelog.save
     else
       danger[:danger] = "number wrong"

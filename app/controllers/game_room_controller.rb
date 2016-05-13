@@ -32,5 +32,21 @@ class GameRoomController < ApplicationController
     redirect_to '/game_list'
   end
 
+  # AJAX call
+  def killer_win
+    # Check if the game can be end :: Game.is_active => f, Game.is_end => f
+    # Update Game
+    # Update Gamelog
+    render :nothing => true
+  end
+
+  def killer_lose
+    render :nothing => true
+  end
+
+  def cancel_game
+    render :nothing => true
+  end
+
 
 end

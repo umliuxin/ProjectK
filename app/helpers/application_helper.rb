@@ -58,9 +58,7 @@ module ApplicationHelper
     cookies.delete(GAME_COOKIE_ID)
   end
 
-  def current_gamelog
-
-  end
+  
 
 
 end
