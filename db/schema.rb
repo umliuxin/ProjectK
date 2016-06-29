@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510044444) do
+ActiveRecord::Schema.define(version: 20160629065237) do
 
   create_table "gamelogs", force: :cascade do |t|
     t.integer  "game_id"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20160510044444) do
     t.string   "gameroles"
     t.integer  "num_of_active_player", default: 0
     t.boolean  "is_end",               default: false
+    t.boolean  "is_anyone_exit",       default: false
   end
 
   create_table "users", force: :cascade do |t|

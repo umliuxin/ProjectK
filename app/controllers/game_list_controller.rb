@@ -84,6 +84,14 @@ class GameListController < ApplicationController
       redirect_to action:'show'
       return
     end
+
+    # game should not be end
+    unless @game.is_end === false
+      flash[:danger] = 'Game end because someone in the game exit'
+      redirect_to action:'show'
+      return
+    end
+
     # game should have slot
     @gamelogs = Gamelog.where(game_id: game_id)
     unless @gamelogs.length < @game.num_of_player

@@ -26,4 +26,11 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def player_exit
+    if !self.is_anyone_exit
+      update_attribute(:is_anyone_exit, 't')
+      update_attribute(:is_end,'t')
+    end
+  end
+
 end

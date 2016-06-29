@@ -18,10 +18,11 @@ class GameRoomController < ApplicationController
 
   end
 
-  def exit
+  def exit_game
     if logged_in? && in_game?
       @current_user = current_user
       @current_game = current_game
+      @current_game.player_exit
       @current_gamelog = Gamelog.find_by(game_id: @current_game[:id], user_id: @current_user[:id])
       @current_gamelog.exit_game
     end
@@ -32,16 +33,15 @@ class GameRoomController < ApplicationController
     redirect_to '/game_list'
   end
 
-  # AJAX call
-  def killer_win
+  def game_over
     # Check if the game can be end :: Game.is_active => f, Game.is_end => f
     if params[:is_win] && params[:is_win] === "true"
       is_killer_win = true
     elsif params[:is_win] && params[:is_win] === "false"
       is_killer_win = false
     else
-      # flash[:danger] = 'Wrong Params'
-      render :text => 'Wrong Params'
+      flash[:danger] = 'Wrong Params'
+      redirect_to '/game_room'
       return
     end
 
@@ -55,8 +55,10 @@ class GameRoomController < ApplicationController
       redirect_to '/game_list'
       return
     end
+
     unless game_in_progress?
-      render :text => 'GAME NOT IN PROGRESS'
+      flash[:danger] = 'GAME NOT IN PROGRESS'
+      redirect_to '/game_room'
       return
     end
 
@@ -77,13 +79,9 @@ class GameRoomController < ApplicationController
     # Update Gamelog
     game_over_update_gamelog(is_killer_win)
 
-    render :nothing => true
+    render '/game_room'
   end
 
-
-  def cancel_game
-    render :nothing => true
-  end
 
   def game_in_progress?
     #Game.is_active => f, Game.is_end => f
@@ -97,10 +95,11 @@ class GameRoomController < ApplicationController
   def game_over_update_game
     @current_game.is_end = true
     ap @current_game
-    # unless @current_game.save
-    #   render :text => 'SAVE FAILED'
-    #   return
-    # end
+    unless @current_game.save
+      flash[:danger] = 'SAVE FAILED'
+      redirect_to '/game_room'
+      return
+    end
   end
 
   def game_over_update_gamelog(is_killer_win)
@@ -111,9 +110,6 @@ class GameRoomController < ApplicationController
     Gamelog.where(:game_id => @current_game.id).where.not(:gamerole => ROLE_KILLER).update_all(:is_active => false , :is_win => !is_killer_win )
   end
 
-  def game_result()
-
-  end
 
 
 end
