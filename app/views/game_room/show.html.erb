@@ -13,11 +13,16 @@
     <div>
       <p><%= link_to "Killers Win", '/killer_win/true'%></p>
       <p><%= link_to "Killers Lose", '/killer_win/false'%></p>
-      <p><%= link_to "Exit Game", '/host_exit_game'%></p>
+      <p>Next step after choosing who wins is to choose exit game or start new game</p>
+      <p><%= link_to "Exit Game", '/exit_game'%></p>
+      <p><%= link_to 'Next Game', '/next_game'%></p>
+
     </div>
   <% else %>
   <div>
-    <p><%= link_to 'Next Game', '#'%></p>
+    <p><%= link_to 'Next Game', '/next_game'%></p>
+    <p>Need to have flash message</p>
+    <p> if game is_end: t, gamelog is_active: t, means game is ended by host. flash message show result. show next game roles, generate gamelog</p>
     <p><%= link_to 'Exit Game', '/exit_game'%></p>
   </div>
   <% end %>

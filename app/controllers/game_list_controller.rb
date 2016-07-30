@@ -29,7 +29,7 @@ class GameListController < ApplicationController
       host_id: params[:host_id].to_i,
       number_of_player: params[:numOfPlayer].to_i,
       access_code: params[:accessCode],
-      is_active: 1,
+      is_active: true,
       gameroles: GAME_ROLE[params[:numOfPlayer].to_sym]
     }
 

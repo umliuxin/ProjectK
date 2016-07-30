@@ -31,7 +31,6 @@ module ApplicationHelper
 
   def current_game
     if game_id = session[GAME_SESSION_ID]
-      ap game_id
       @current_game ||= Game.find_by(id: game_id)
 
       @current_game
@@ -58,7 +57,7 @@ module ApplicationHelper
     cookies.delete(GAME_COOKIE_ID)
   end
 
-  
+
 
 
 end

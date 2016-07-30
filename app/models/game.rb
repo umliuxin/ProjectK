@@ -33,4 +33,32 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def create_next_game
+      #handle game creation
+      create_params = {
+        host_id: self.host_id,
+        number_of_player: self.num_of_player,
+        access_code: self.access_code,
+        is_active: true,
+        gameroles: GAME_ROLE[self.num_of_player.to_s.to_sym]
+      }
+      @game = Game.new(host_id: create_params[:host_id],
+            num_of_player: create_params[:number_of_player],
+            is_active: create_params[:is_active],
+            access_code: create_params[:access_code],
+            gameroles: create_params[:gameroles])
+
+      @game.random_game_role
+      @game.save
+      @game
+  end
+
+  def get_next_game
+    @latest_game = Game.where(host_id: self.host_id).order('created_at DESC').first
+    if @latest_game.id != self.id
+      @latest_game
+    else
+      return false
+    end
+  end
 end

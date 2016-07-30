@@ -16,7 +16,7 @@ module GameListHelper
       ap '______________'
       @gamelog.save
     else
-      danger[:danger] = "number wrong"
+      flash[:danger] = "number wrong"
       return false
     end
 

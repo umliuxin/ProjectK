@@ -8,5 +8,6 @@ class Gamelog < ActiveRecord::Base
     update_attribute(:is_active , 'f')
   end
 
+  
 
 end
